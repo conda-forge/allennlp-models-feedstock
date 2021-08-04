@@ -26,7 +26,7 @@ requirements:
     - ftfy
     - nltk
     - py-rouge ==1.1
-    - pytorch >=1.7,<1.9
+    - pytorch >=1.7,<1.10
     - word2number >=1.1
 
 test:
