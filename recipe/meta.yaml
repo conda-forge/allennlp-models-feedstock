@@ -1,4 +1,4 @@
-{% set version = "2.5.0" %}
+{% set version = "2.6.0" %}
 
 package:
   name: allennlp-models
@@ -6,12 +6,12 @@ package:
 
 source:
   url: https://github.com/allenai/allennlp-models/archive/v{{ version }}.tar.gz
-  sha256: 56696c3c983273be060e0351a14a20a628c7da48c39acd12acf12da06f2c95c6
+  sha256: 6075ec3cfe23fb7e81c66b9009b9923240c2707c925ac9b608c8b4066de3b27a
 
 build:
   number: 1
   script: {{ PYTHON }} -m pip install . -vv
-  skip: true  # [win]
+  skip: true  # [win or py36]
 
 requirements:
   build:
@@ -26,8 +26,14 @@ requirements:
     - ftfy
     - nltk
     - py-rouge ==1.1
-    - pytorch >=1.7,<1.9
+    - pytorch >=1.7,<1.10
     - word2number >=1.1
+  run_constrained:
+    # failing test suite with 0.9.0; can be dropped once allennlp has this as its lower bound;
+    # torchvision 0.10.0 needs pytorch 1.9, but the resolver gets lost in the weeds somewhere and
+    # adds an old pytorch-cpu, see https://github.com/conda-forge/pytorch-cpu-feedstock/issues/65
+    - torchvision >=0.10.0
+    - pytorch-cpu >=1.9     # [osx]
 
 test:
   requires:
