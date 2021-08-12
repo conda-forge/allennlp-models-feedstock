@@ -29,8 +29,11 @@ requirements:
     - pytorch >=1.7,<1.10
     - word2number >=1.1
   run_constrained:
-    # failing test suite with 0.9.0; can be dropped once allennlp has this as its lower bound
+    # failing test suite with 0.9.0; can be dropped once allennlp has this as its lower bound;
+    # torchvision 0.10.0 needs pytorch 1.9, but the resolver gets lost in the weeds somewhere and
+    # adds an old pytorch-cpu, see https://github.com/conda-forge/pytorch-cpu-feedstock/issues/65
     - torchvision >=0.10.0
+    - pytorch-cpu >=1.9     # [osx]
 
 test:
   requires:
