@@ -22,7 +22,7 @@ requirements:
   run:
     - python
     - allennlp =={{ version }}
-    - conllu ==4.4
+    - conllu ==4.4.1
     - ftfy
     - nltk
     - py-rouge ==1.1
