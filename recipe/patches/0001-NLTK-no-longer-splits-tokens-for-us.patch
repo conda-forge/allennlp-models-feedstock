@@ -1,0 +1,25 @@
+From 03c33e51eceafb83b56f7b2e2301cf24067fd562 Mon Sep 17 00:00:00 2001
+From: Dirk Groeneveld <dirkg@allenai.org>
+Date: Fri, 12 Nov 2021 14:55:24 -0800
+Subject: [PATCH] NLTK no longer splits tokens for us
+
+---
+ allennlp_models/rc/tools/narrativeqa.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/allennlp_models/rc/tools/narrativeqa.py b/allennlp_models/rc/tools/narrativeqa.py
+index cc9f740..e5ad418 100644
+--- a/allennlp_models/rc/tools/narrativeqa.py
++++ b/allennlp_models/rc/tools/narrativeqa.py
+@@ -37,7 +37,7 @@ def bleu_4(p, g):
+ 
+ 
+ def meteor(p, g):
+-    return meteor_score(g, p)
++    return meteor_score([x.split() for x in g], p.split())
+ 
+ 
+ def rouge_l(p, g):
+-- 
+2.32.0.windows.2
+

@@ -7,6 +7,9 @@ package:
 source:
   url: https://github.com/allenai/allennlp-models/archive/v{{ version }}.tar.gz
   sha256: 8de85fde1aa309cbc1806a51f7761d87ff7e1aab01abd0ecc1ab468b51e018bb
+  patches:
+    # backport from allenai/allennlp-models#307
+    - patches/0001-NLTK-no-longer-splits-tokens-for-us.patch
 
 build:
   number: 0
@@ -24,7 +27,7 @@ requirements:
     - allennlp =={{ version }}
     - conllu ==4.4.1
     - ftfy
-    - nltk
+    - nltk >=3.6.5
     - py-rouge ==1.1
     - pytorch >=1.7,<1.10
     - word2number >=1.1
