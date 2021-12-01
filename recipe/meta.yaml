@@ -1,4 +1,4 @@
-{% set version = "2.7.0" %}
+{% set version = "2.8.0" %}
 
 package:
   name: allennlp-models
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/allenai/allennlp-models/archive/v{{ version }}.tar.gz
-  sha256: 8de85fde1aa309cbc1806a51f7761d87ff7e1aab01abd0ecc1ab468b51e018bb
+  sha256: 69d54a5277d07c97415afac90c8b2e8dcfae19d44088a7c82c33bee80ba7e35d
   patches:
     # backport from allenai/allennlp-models#307
     - patches/0001-NLTK-no-longer-splits-tokens-for-us.patch
