@@ -1,4 +1,4 @@
-{% set version = "2.6.0" %}
+{% set version = "2.7.0" %}
 
 package:
   name: allennlp-models
@@ -6,12 +6,15 @@ package:
 
 source:
   url: https://github.com/allenai/allennlp-models/archive/v{{ version }}.tar.gz
-  sha256: 6075ec3cfe23fb7e81c66b9009b9923240c2707c925ac9b608c8b4066de3b27a
+  sha256: 8de85fde1aa309cbc1806a51f7761d87ff7e1aab01abd0ecc1ab468b51e018bb
+  patches:
+    # backport from allenai/allennlp-models#307
+    - patches/0001-NLTK-no-longer-splits-tokens-for-us.patch
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
-  skip: true  # [win or py36]
+  skip: true  # [win or py<37]
 
 requirements:
   build:
@@ -22,9 +25,9 @@ requirements:
   run:
     - python
     - allennlp =={{ version }}
-    - conllu ==4.4
+    - conllu ==4.4.1
     - ftfy
-    - nltk
+    - nltk >=3.6.5
     - py-rouge ==1.1
     - pytorch >=1.7,<1.10
     - word2number >=1.1
