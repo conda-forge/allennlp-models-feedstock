@@ -1,4 +1,4 @@
-{% set version = "2.8.0" %}
+{% set version = "2.9.0" %}
 
 package:
   name: allennlp-models
@@ -6,10 +6,7 @@ package:
 
 source:
   url: https://github.com/allenai/allennlp-models/archive/v{{ version }}.tar.gz
-  sha256: 69d54a5277d07c97415afac90c8b2e8dcfae19d44088a7c82c33bee80ba7e35d
-  patches:
-    # backport from allenai/allennlp-models#307
-    - patches/0001-NLTK-no-longer-splits-tokens-for-us.patch
+  sha256: fd08c3b7bf560f59d0c52b2ee7346ef7ff762d89fc4ac3ae55499840f717574f
 
 build:
   number: 0
@@ -26,10 +23,11 @@ requirements:
     - python
     - allennlp =={{ version }}
     - conllu ==4.4.1
+    - datasets
     - ftfy
     - nltk >=3.6.5
     - py-rouge ==1.1
-    - pytorch >=1.7,<1.10
+    - pytorch >=1.7,<1.11
     - word2number >=1.1
   run_constrained:
     # failing test suite with 0.9.0; can be dropped once allennlp has this as its lower bound;
