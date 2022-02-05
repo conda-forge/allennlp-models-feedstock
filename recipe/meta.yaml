@@ -7,9 +7,6 @@ package:
 source:
   url: https://github.com/allenai/allennlp-models/archive/v{{ version }}.tar.gz
   sha256: fd08c3b7bf560f59d0c52b2ee7346ef7ff762d89fc4ac3ae55499840f717574f
-  patches:
-    # backport from allenai/allennlp-models#307
-    - patches/0001-NLTK-no-longer-splits-tokens-for-us.patch
 
 build:
   number: 0
