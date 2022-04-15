@@ -1,4 +1,4 @@
-{% set version = "2.9.0" %}
+{% set version = "2.9.3" %}
 
 package:
   name: allennlp-models
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/allenai/allennlp-models/archive/v{{ version }}.tar.gz
-  sha256: fd08c3b7bf560f59d0c52b2ee7346ef7ff762d89fc4ac3ae55499840f717574f
+  sha256: a1304180d4a25a77958eb6747dfbc210cb2edac59b854dac89f4034a2a77780e
 
 build:
   number: 0
