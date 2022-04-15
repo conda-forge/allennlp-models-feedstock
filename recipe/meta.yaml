@@ -1,4 +1,4 @@
-{% set version = "2.9.0" %}
+{% set version = "2.9.3" %}
 
 package:
   name: allennlp-models
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/allenai/allennlp-models/archive/v{{ version }}.tar.gz
-  sha256: fd08c3b7bf560f59d0c52b2ee7346ef7ff762d89fc4ac3ae55499840f717574f
+  sha256: a1304180d4a25a77958eb6747dfbc210cb2edac59b854dac89f4034a2a77780e
 
 build:
   number: 0
@@ -23,13 +23,13 @@ requirements:
     - pip
   run:
     - python
-    - allennlp =={{ version }}
+    - allennlp-all =={{ version }}
     - conllu ==4.4.1
     - datasets
     - ftfy
     - nltk >=3.6.5
     - py-rouge ==1.1
-    - pytorch >=1.7,<1.11
+    - pytorch >=1.7,<1.12
     - word2number >=1.1
   run_constrained:
     # failing test suite with 0.9.0; can be dropped once allennlp has this as its lower bound;
@@ -49,6 +49,8 @@ test:
   imports:
     - allennlp_models
   commands:
+    # download necessary nltk corpus
+    - python -c 'import nltk; [nltk.download(p) for p in ["omw-1.4"]]'
     # from upstream: https://github.com/allenai/allennlp-models/blob/main/Makefile
     - pytest --color=yes -rf -m "not pretrained_model_test and not pretrained_config_test"
 
