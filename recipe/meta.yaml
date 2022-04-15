@@ -49,6 +49,8 @@ test:
   imports:
     - allennlp_models
   commands:
+    # download necessary nltk corpus
+    - python -c 'import nltk; [nltk.download(p) for p in ["omw-1.4"]]'
     # from upstream: https://github.com/allenai/allennlp-models/blob/main/Makefile
     - pytest --color=yes -rf -m "not pretrained_model_test and not pretrained_config_test"
 
